@@ -141,8 +141,10 @@ export class NavbarComponent implements OnInit {
 
   search(value: string) {
     if (value) {
-      var sanitizedValue:string = this.sanitizer.sanitize(SecurityContext.HTML, value);
-      const queryParams = {queryParams: {q: sanitizedValue}}
+      var sanitizedValue1:string = this.sanitizer.sanitize(SecurityContext.HTML, value);
+      var sanitizedValue2:string = this.sanitizer.sanitize(SecurityContext.Script, sanitizedValue1);
+      var sanitizedValue3:string = this.sanitizer.sanitize(SecurityContext.URL, sanitizedValue2);
+      const queryParams = {queryParams: {q: sanitizedValue3}}
       this.ngZone.run(() => this.router.navigate(['/search'], queryParams))
     } else {
       this.ngZone.run(() => this.router.navigate(['/search']))
