@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user).subscribe((authentication: any) => {
       localStorage.setItem('token', authentication.token)
       let expires = new Date()
-      expires.setHours(expires.getHours() + 8)
+      expires.setHours(expires.getHours() + 1)
       this.cookieService.set('token', authentication.token, expires, '/')
       sessionStorage.setItem('bid', authentication.bid)
       this.userService.isLoggedIn.next(true)
